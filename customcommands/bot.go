@@ -92,7 +92,7 @@ var cmdListCommands = &commands.YAGCommand{
 	CmdCategory:    commands.CategoryTool,
 	Name:           "CustomCommands",
 	Aliases:        []string{"cc"},
-	Description:    "Shows a custom command specified by id or trigger, or lists them all",
+	Description:    "Pokazuje niestandardowe komendy określone przez id lub trigger, lub wymienia wszystko",
 	ArgumentCombos: [][]int{[]int{0}, []int{1}, []int{}},
 	Arguments: []*dcmd.ArgDef{
 		&dcmd.ArgDef{Name: "ID", Type: dcmd.Int},
@@ -101,12 +101,12 @@ var cmdListCommands = &commands.YAGCommand{
 	RunFunc: func(data *dcmd.Data) (interface{}, error) {
 		ccs, err := models.CustomCommands(qm.Where("guild_id = ?", data.GS.ID), qm.OrderBy("local_id")).AllG(data.Context())
 		if err != nil {
-			return "Failed retrieving custom commands", err
+			return "Nie", err
 		}
 
 		groups, err := models.CustomCommandGroups(qm.Where("guild_id=?", data.GS.ID)).AllG(data.Context())
 		if err != nil {
-			return "Failed retrieving custom command groups", err
+			return "Nie udalo ci sie pobrac niestandardowych grup", err
 		}
 
 		groupMap := make(map[int64]string)
@@ -119,7 +119,7 @@ var cmdListCommands = &commands.YAGCommand{
 		if len(foundCCS) < 1 {
 			list := StringCommands(ccs, groupMap)
 			if len(list) == 0 {
-				return "This server has no custom commands, sry.", nil
+				return "Ten serwer nie posiada niestandardowych komend, sorka.", nil
 			}
 			if provided {
 				return "No command by that name or id found, here is a list of them all:\n" + list, nil
