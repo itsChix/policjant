@@ -49,7 +49,7 @@ func (p *Plugin) AddCommands() {
 		CmdCategory: catEvents,
 		Name:        "Create",
 		Aliases:     []string{"new", "make"},
-		Description: "Creates an event, You will be led through an interactive setup",
+		Description: "Tworzy event, oraz uruchamia interaktywny setup.",
 		Plugin:      p,
 		RunFunc: func(parsed *dcmd.Data) (interface{}, error) {
 
@@ -97,7 +97,7 @@ func (p *Plugin) AddCommands() {
 	cmdEdit := &commands.YAGCommand{
 		CmdCategory:         catEvents,
 		Name:                "Edit",
-		Description:         "Edits an event",
+		Description:         "Edytuje event.",
 		Plugin:              p,
 		RequireDiscordPerms: []int64{discordgo.PermissionManageServer, discordgo.PermissionManageMessages},
 		Arguments: []*dcmd.ArgDef{
@@ -175,7 +175,7 @@ func (p *Plugin) AddCommands() {
 		CmdCategory:         catEvents,
 		Name:                "List",
 		Aliases:             []string{"ls"},
-		Description:         "Lists all events in this server",
+		Description:         "Wyswietla wszystkie aktywne eventy.",
 		RequireDiscordPerms: []int64{discordgo.PermissionManageServer, discordgo.PermissionManageMessages},
 		Plugin:              p,
 		RunFunc: func(parsed *dcmd.Data) (interface{}, error) {
@@ -205,7 +205,7 @@ func (p *Plugin) AddCommands() {
 		CmdCategory:         catEvents,
 		Name:                "Delete",
 		Aliases:             []string{"rm", "del"},
-		Description:         "Deletes an event, specify the event ID of the event you wanna delete",
+		Description:         "Usuwa event, uwzglednij ID eventu ktory chcesz usunac.",
 		RequireDiscordPerms: []int64{discordgo.PermissionManageServer, discordgo.PermissionManageMessages},
 		RequiredArgs:        1,
 		Plugin:              p,
@@ -240,7 +240,7 @@ func (p *Plugin) AddCommands() {
 		CmdCategory:         catEvents,
 		Name:                "StopSetup",
 		Aliases:             []string{"cancelsetup"},
-		Description:         "Force cancels the current setup session in this channel",
+		Description:         "Zmus do zaprzestania tworzenia eventu.",
 		RequireDiscordPerms: []int64{discordgo.PermissionManageServer},
 		Plugin:              p,
 		RunFunc: func(parsed *dcmd.Data) (interface{}, error) {
@@ -250,12 +250,12 @@ func (p *Plugin) AddCommands() {
 				if v.SetupChannel == parsed.CS.ID {
 					p.setupSessionsMU.Unlock()
 					go v.remove()
-					return "Canceled the current setup in this channel", nil
+					return "Zaprzestano tworzenia eventu.", nil
 				}
 			}
 			p.setupSessionsMU.Unlock()
 
-			return "No ongoing setup in the current channel.", nil
+			return "Brak trawajacego setupu eventu na tym kanale.", nil
 		},
 	}
 
