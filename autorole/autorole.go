@@ -43,7 +43,7 @@ func GetGeneralConfig(guildID int64) (*GeneralConfig, error) {
 	conf := &GeneralConfig{}
 	err := common.GetRedisJson(KeyGeneral(guildID), conf)
 	if err != nil {
-		logger.WithError(err).WithField("guild", guildID).Error("Nie udalo ci się skonfigurować autorole")
+		logger.WithError(err).WithField("guild", guildID).Error("Nie udało wczytać się konfiguracji automatycznych ról")
 	}
 	return conf, err
 }
