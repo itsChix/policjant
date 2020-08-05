@@ -290,7 +290,7 @@ func HandleGuildBanAddRemove(evt *eventsystem.EventData) {
 	// The bot only unbans people in the case of timed bans
 	if botPerformed {
 		author = common.BotUser
-		reason = "Timed ban expired"
+		reason = "Czas tymczasowego bana minął"
 	}
 
 	err = CreateModlogEmbed(config, author, action, user, reason, "")
@@ -515,7 +515,7 @@ func handleScheduledUnmute(evt *seventsmodels.ScheduledEvent, data interface{}) 
 		return scheduledevents2.CheckDiscordErrRetry(err), err
 	}
 
-	err = MuteUnmuteUser(nil, false, evt.GuildID, nil, nil, common.BotUser, "Mute Duration Expired", member, 0)
+	err = MuteUnmuteUser(nil, false, evt.GuildID, nil, nil, common.BotUser, "Czas trwania wyciszenia użytkownika dobiegł końca", member, 0)
 	if errors.Cause(err) != ErrNoMuteRole {
 		return scheduledevents2.CheckDiscordErrRetry(err), err
 	}

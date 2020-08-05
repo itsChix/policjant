@@ -27,12 +27,12 @@ func (m ModlogAction) String() string {
 }
 
 var (
-	MAMute       = ModlogAction{Prefix: "Muted", Emoji: "🔇", Color: 0x57728e}
-	MAUnmute     = ModlogAction{Prefix: "Unmuted", Emoji: "🔊", Color: 0x62c65f}
-	MAKick       = ModlogAction{Prefix: "Kicked", Emoji: "👢", Color: 0xf2a013}
-	MABanned     = ModlogAction{Prefix: "Banned", Emoji: "🔨", Color: 0xd64848}
-	MAUnbanned   = ModlogAction{Prefix: "Unbanned", Emoji: "🔓", Color: 0x62c65f}
-	MAWarned     = ModlogAction{Prefix: "Warned", Emoji: "⚠", Color: 0xfca253}
+	MAMute       = ModlogAction{Prefix: "Wyciszono", Emoji: "🔇", Color: 0x57728e}
+	MAUnmute     = ModlogAction{Prefix: "Usunięto wyciszenie", Emoji: "🔊", Color: 0x62c65f}
+	MAKick       = ModlogAction{Prefix: "Wyrzucono", Emoji: "👢", Color: 0xf2a013}
+	MABanned     = ModlogAction{Prefix: "Zbanowano", Emoji: "🔨", Color: 0xd64848}
+	MAUnbanned   = ModlogAction{Prefix: "Odbanowano", Emoji: "🔓", Color: 0x62c65f}
+	MAWarned     = ModlogAction{Prefix: "Ostrzeżono", Emoji: "⚠", Color: 0xfca253}
 	MAGiveRole   = ModlogAction{Prefix: "", Emoji: "➕", Color: 0x53fcf9}
 	MARemoveRole = ModlogAction{Prefix: "", Emoji: "➖", Color: 0x53fcf9}
 )
@@ -55,7 +55,7 @@ func CreateModlogEmbed(config *Config, author *discordgo.User, action ModlogActi
 	}
 
 	if reason == "" {
-		reason = "(no reason specified)"
+		reason = "(powód nie został podany)"
 	}
 
 	embed := &discordgo.MessageEmbed{
@@ -67,12 +67,12 @@ func CreateModlogEmbed(config *Config, author *discordgo.User, action ModlogActi
 			URL: discordgo.EndpointUserAvatar(target.ID, target.Avatar),
 		},
 		Color: action.Color,
-		Description: fmt.Sprintf("**%s%s %s**#%s *(ID %d)*\n📄**Reason:** %s",
+		Description: fmt.Sprintf("**%s%s %s**#%s *(ID %d)*\n📄**Powód:** %s",
 			action.Emoji, action.Prefix, target.Username, target.Discriminator, target.ID, reason),
 	}
 
 	if logLink != "" {
-		embed.Description += " ([Logs](" + logLink + "))"
+		embed.Description += " ([Logi](" + logLink + "))"
 	}
 
 	if action.Footer != "" {
@@ -93,7 +93,7 @@ func CreateModlogEmbed(config *Config, author *discordgo.User, action ModlogActi
 	}
 
 	if emptyAuthor {
-		placeholder := fmt.Sprintf("Asssign an author and reason to this using **'reason %d your-reason-here`**", m.ID)
+		placeholder := fmt.Sprintf("Przypisz autora i powód używając komendy **'reason %d twoj-powod`**", m.ID)
 		updateEmbedReason(nil, placeholder, embed)
 		_, err = common.BotSession.ChannelMessageEditEmbed(channelID, m.ID, embed)
 	}
@@ -101,11 +101,11 @@ func CreateModlogEmbed(config *Config, author *discordgo.User, action ModlogActi
 }
 
 var (
-	logsRegex = regexp.MustCompile(`\(\[Logs\]\(.*\)\)`)
+	logsRegex = regexp.MustCompile(`\(\[Logi\]\(.*\)\)`)
 )
 
 func updateEmbedReason(author *discordgo.User, reason string, embed *discordgo.MessageEmbed) {
-	const checkStr = "📄**Reason:**"
+	const checkStr = "📄**Powód:**"
 
 	index := strings.Index(embed.Description, checkStr)
 	withoutReason := embed.Description[:index+len(checkStr)]
