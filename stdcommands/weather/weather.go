@@ -19,7 +19,7 @@ var Command = &commands.YAGCommand{
 	CmdCategory:  commands.CategoryFun,
 	Name:         "Pogoda",
 	Aliases:      []string{"w"},
-	Description:  "Pokażuję pogodę wszędzie",
+	Description:  "Pokazuje pogodę w wybranym miejscu",
 	RunInDM:      true,
 	RequiredArgs: 1,
 	Arguments: []*dcmd.ArgDef{
