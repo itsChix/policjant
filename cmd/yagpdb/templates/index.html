@@ -18,9 +18,9 @@
 <meta name="theme-color" content="#ffffff">
 
   <meta property="og:title" content="YAGPDB" />
-  <meta property="og:description" content="Bot administracjny serwera ROBUXIANIE" />
+  <meta property="og:description" content="Yet Another General Purpose Discord Bot" />
   <!-- For Social Media -->
-  <meta property="description" content="Bot administracjny serwera ROBUXIANIE" />
+  <meta property="description" content="Yet Another General Purpose Discord Bot" />
   <!-- For search engines -->
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
@@ -45,23 +45,23 @@
     <div class="collapse navbar-collapse poppins" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a id="link_to_about" class="nav-link js-anchor-link" href="#about">O bocie</a>
+          <a id="link_to_about" class="nav-link js-anchor-link" href="#about">About</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link js-anchor-link" href="#features">Funkcje</a>
+          <a class="nav-link js-anchor-link" href="#features">Features</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/status">Status</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="https://discordapp.com/oauth2/authorize?client_id={{.ClientID}}&scope=bot&permissions=2146827775&response_type=code&redirect_uri={{urlquery (joinStr ""  "https://" .Host "/manage")}}">Dodaj do serwera</a>
+          <a class="nav-link" href="https://discordapp.com/oauth2/authorize?client_id={{.ClientID}}&scope=bot&permissions=2146827775&response_type=code&redirect_uri={{urlquery (joinStr ""  "https://" .Host "/manage")}}">Add to server</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/premium">Premium</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0 mr-2">
-        <a class="btn btn-outline-danger my-2 my-sm-0" href="/manage">Panel sterowania</a>
+        <a class="btn btn-outline-danger my-2 my-sm-0" href="/manage">Control Panel</a>
       </form>
       {{if .User}}
       <form class="form-inline my-2 my-lg-0">
@@ -79,26 +79,26 @@
             <div class="col col-md-10">
               <h1 class="brand-heading bold intro_head">
                 <br/>YAGPDB</h1>
-              <p class="intro_headline">Bot administracyjny serwera ROBUXIANIE</p>
+              <p class="intro_headline">Yet Another General Purpose Discord Bot</p>
             </div>
           </div>
           {{if ne .DemoServerID "0"}}<div class="row justify-content-md-center">
             <div class="col col-md-10">
-              <p class="intro-text poppins"><a href="http://www.robuxianie.pl/">Klinkij aby przejsc do serwera ROBUXIANIE.</a></p>
+              <p class="intro-text poppins"><a href="/manage/{{.DemoServerID}}/home">Click here for a live demo of the control panel</a></p>
             </div>
           </div>{{end}}
           <div class="row justify-content-md-center">
             <div class="col col-md-5">
               <div class="numberbutton">
                 <img src="/static/img/button.png" alt="" class="btn_img">
-                <p class="intro-text poppins bold numbercentered">JDolaczone serwery
+                <p class="intro-text poppins bold numbercentered">Joined Servers
                   <br> {{.JoinedServers}}</p>
               </div>
             </div>
             <div class="col col-md-5">
               <div class="numberbutton">
                 <img src="/static/img/button.png" alt="" class="btn_img">
-                <p class="intro-text poppins bold numbercentered">Komend uzytych dzisiaj
+                <p class="intro-text poppins bold numbercentered">Commands ran today
                   <br> {{.Commands}}</p>
               </div>
             </div>
@@ -117,9 +117,14 @@
       <div class="row justify-content-md-center">
         <div class="col col-lg-8 abouttext" style="padding-bottom: 3%;">
           <h2 class="about poppins semibold">About YAGPDB</h2>
-          <p class="about">wlasciwie to kradniemy skrypty z githuba z bota yapgpxyz ale nie mowcie</p>
+          <p class="about">YAGPDB is a multi-purpose Discord bot that I've worked on for quite some time now. What does it do? Well, it does
+            a bunch of stuff right now, the best way to figure out what it does is to try it out by adding it onto a testing
+            server and see what it provides for yourself.</p>
           <p class="about">
-            <b>wiec?</b> nie no dobra to jest open source ale wiecie jakby co to jakby nie wazne? jakby ot nasz bot wlasny a jak masz problem to wyjdz???</p>
+            <b>Who am I?</b> I go by the name Jonas747 online and (unsurprisingly) my real name is also Jonas, although not 747,
+            I'm not a plane. YAGPDB is a project that I have been developing in my spare time for roughly 3 years now, it
+            started out because MEE6 (which I was currently using for my server) was lacking a lot of stuff that I wanted,
+            so I decided to make my own bot, and here I am.</p>
         </div>
       </div>
     </section>
@@ -142,7 +147,7 @@
             <li>Fast Reddit feeds (within one minute)</li>
             <li>Fast YouTube feeds (within a few minutes)</li>
             <li>Join / Leave messages in a specific channel (configurable)</li>
-            <li>bot popiera jp</li>
+            <li>Direct messages on join (configurable)</li>
           </ul>
         </div>
         <img src="/static/img/reddit feed1.png" class="img-fluid f_image_r second" alt="Example of Reddit Feed from r/discordapp">
@@ -263,8 +268,8 @@
         <div class="col col-lg-12">
           <p>
             <b>YAGPDB</b> created by
-            <a class="link" href="https://github.com/jonas747" rel="noopener" target="_blank">twoj stary</a> | Landing Page by
-            <a class="link" href="https://github.com/michelhn/" rel="noopener" target="_blank">najebany</a>
+            <a class="link" href="https://github.com/jonas747" rel="noopener" target="_blank">Jonas747</a> | Landing Page by
+            <a class="link" href="https://github.com/michelhn/" rel="noopener" target="_blank">Michdi</a>
           </p>
         </div>
       </div>
