@@ -17,9 +17,9 @@ var TempRangeRegex = regexp.MustCompile("(-?[0-9]{1,3})( ?- ?(-?[0-9]{1,3}))? ?Â
 
 var Command = &commands.YAGCommand{
 	CmdCategory:  commands.CategoryFun,
-	Name:         "Weather",
+	Name:         "Pogoda",
 	Aliases:      []string{"w"},
-	Description:  "Shows the weather somewhere",
+	Description:  "Pokazuje pogodÄ™ w wybranym miejscu",
 	RunInDM:      true,
 	RequiredArgs: 1,
 	Arguments: []*dcmd.ArgDef{
