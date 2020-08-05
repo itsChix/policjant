@@ -341,7 +341,7 @@ const (
 	ReasonMissingRole              = "Brakuje wymaganej roli do wykonania tej komendy"
 	ReasonIgnoredRole              = "Ma zignorowaną rangę dla tej komendy"
 	ReasonUserMissingPerms         = "Ranga użytkownika nie ma jednej lub więcej uprawnień potrzebnych do wykonania tej komendy"
-	ReasonCooldown                 = "Ta komenda jest spowolniona"
+	ReasonCooldown                 = "Musisz odczekać zanim użyjesz tą komendę ponownie"
 )
 
 // checks if the specified user can execute the command, and if so returns the settings for said command
