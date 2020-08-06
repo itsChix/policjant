@@ -78,24 +78,24 @@ func HandlePostStreaming(w http.ResponseWriter, r *http.Request) interface{} {
 	}
 
 	err := newConf.Save(guild.ID)
-	if web.CheckErr(tmpl, err, "Failed saving config :'(", web.CtxLogger(ctx).Error) {
+	if web.CheckErr(tmpl, err, "Nie udało się zapisać konfiguracji :'(", web.CtxLogger(ctx).Error) {
 		return tmpl
 	}
 
 	err = featureflags.UpdatePluginFeatureFlags(guild.ID, &Plugin{})
 	if err != nil {
-		web.CtxLogger(ctx).WithError(err).Error("failed updating feature flags")
+		web.CtxLogger(ctx).WithError(err).Error("Nieudana aktualizacja flag funkcji")
 	}
 
 	err = pubsub.Publish("update_streaming", guild.ID, nil)
 	if err != nil {
-		web.CtxLogger(ctx).WithError(err).Error("Failed sending update streaming event")
+		web.CtxLogger(ctx).WithError(err).Error("Nie udało ci się wysłać aktualizację zdarzenia transmisji strumieniowej")
 	}
 
 	user := ctx.Value(common.ContextKeyUser).(*discordgo.User)
-	common.AddCPLogEntry(user, guild.ID, "Updated streaming config.")
+	common.AddCPLogEntry(user, guild.ID, "t.")
 
-	return tmpl.AddAlerts(web.SucessAlert("Saved settings"))
+	return tmpl.AddAlerts(web.SucessAlert("Zapisano ustawienia"))
 }
 
 var _ web.PluginWithServerHomeWidget = (*Plugin)(nil)
