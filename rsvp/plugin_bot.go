@@ -528,7 +528,7 @@ func (p *Plugin) handleScheduledUpdate(evt *eventModels.ScheduledEvent, data int
 			return true, err
 		}
 
-		p.sendReminders(m, "Event is starting in less than 30 minutes!", "The event you signed up for: **"+m.Title+"** is starting soon!")
+		p.sendReminders(m, "Event zacznie sie za mniej niz 30 minut!", "Event na ktory sie zapisales: **"+m.Title+"** rozpoczyna sie wkrotce!")
 	}
 
 	err = scheduledevents2.ScheduleEvent("rsvp_update_session", evt.GuildID, NextUpdateTime(m), m.MessageID)
@@ -546,7 +546,7 @@ const (
 
 func (p *Plugin) startEvent(m *models.RSVPSession) error {
 
-	p.sendReminders(m, "Event starting now!", "The event you signed up for: **"+m.Title+"** is starting now!")
+	p.sendReminders(m, "Event zaczyna sie!", "Event na ktory sie zapisales **"+m.Title+"** rozpoczyna sie teraz!")
 
 	common.BotSession.MessageReactionsRemoveAll(m.ChannelID, m.MessageID)
 	_, err := m.DeleteG(context.Background())
