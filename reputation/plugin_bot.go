@@ -94,8 +94,8 @@ var cmds = []*commands.YAGCommand{
 	&commands.YAGCommand{
 		CmdCategory:  commands.CategoryFun,
 		Name:         "TakeRep",
-		Aliases:      []string{"-", "tr", "trep", "-rep"},
-		Description:  "Takes away rep from someone",
+		Aliases:      []string{"-", "tr", "trep", "-rep", "zr"},
+		Description:  "Zabiera użytkownikwi punkt reputacji.",
 		RequiredArgs: 1,
 		Arguments: []*dcmd.ArgDef{
 			&dcmd.ArgDef{Name: "User", Type: dcmd.User},
@@ -109,8 +109,8 @@ var cmds = []*commands.YAGCommand{
 	&commands.YAGCommand{
 		CmdCategory:  commands.CategoryFun,
 		Name:         "GiveRep",
-		Aliases:      []string{"+", "gr", "grep", "+rep"},
-		Description:  "Gives rep to someone",
+		Aliases:      []string{"+", "gr", "grep", "+rep", "dr"},
+		Description:  "Dodaje użytkownikowi punkt reputacji.",
 		RequiredArgs: 1,
 		Arguments: []*dcmd.ArgDef{
 			&dcmd.ArgDef{Name: "User", Type: dcmd.User},
@@ -122,7 +122,7 @@ var cmds = []*commands.YAGCommand{
 		CmdCategory:  commands.CategoryFun,
 		Name:         "SetRep",
 		Aliases:      []string{"SetRepID"}, // alias for legacy reasons, used to be a standalone command
-		Description:  "Sets someones rep, this is an admin command and bypasses cooldowns and other restrictions.",
+		Description:  "Ustawia rep użytkownikowi, jest to komenda administracyjna",
 		RequiredArgs: 2,
 		Arguments: []*dcmd.ArgDef{
 			&dcmd.ArgDef{Name: "User", Type: dcmd.UserID},
@@ -131,11 +131,11 @@ var cmds = []*commands.YAGCommand{
 		RunFunc: func(parsed *dcmd.Data) (interface{}, error) {
 			conf, err := GetConfig(parsed.Context(), parsed.GS.ID)
 			if err != nil {
-				return "An error occured while finding the server config", err
+				return "Pojawił się błąd podczas szukania konfiguarcji serwera", err
 			}
 
 			if !IsAdmin(parsed.GS, parsed.MS, conf) {
-				return "You're not a reputation admin. (no manage server perms and no rep admin role)", nil
+				return "Nie masz permisji do zarządzania reputacją. (Nie masz permisji zarządzania serwerem i roli rep admin )", nil
 			}
 
 			targetID := parsed.Args[0].Int64()
@@ -156,7 +156,7 @@ var cmds = []*commands.YAGCommand{
 	&commands.YAGCommand{
 		CmdCategory:  commands.CategoryFun,
 		Name:         "DelRep",
-		Description:  "Deletes someone from the reputation list completely, this cannot be undone.",
+		Description:  "Usuwa repy użytkownika (Nie można tego cofnąć)",
 		RequiredArgs: 1,
 		Arguments: []*dcmd.ArgDef{
 			&dcmd.ArgDef{Name: "User", Type: dcmd.UserID},
@@ -164,11 +164,11 @@ var cmds = []*commands.YAGCommand{
 		RunFunc: func(parsed *dcmd.Data) (interface{}, error) {
 			conf, err := GetConfig(parsed.Context(), parsed.GS.ID)
 			if err != nil {
-				return "An error occured while finding the server config", err
+				return "Pojawił się błąd podczas szukania konfiguarcji serwera", err
 			}
 
 			if !IsAdmin(parsed.GS, parsed.MS, conf) {
-				return "You're not an reputation admin. (no manage servers perms and no rep admin role)", nil
+				return "Nie masz permisji do zarządzania reputacją. (Nie masz permisji zarządzania serwerem i roli rep admin ", nil
 			}
 
 			target := parsed.Args[0].Int64()
@@ -185,7 +185,7 @@ var cmds = []*commands.YAGCommand{
 		CmdCategory:  commands.CategoryFun,
 		Name:         "RepLog",
 		Aliases:      []string{"replogs"},
-		Description:  "Shows the rep log for the specified user.",
+		Description:  "Pokazuje historię reputacji wybranego użytkownika",
 		RequiredArgs: 1,
 		Arguments: []*dcmd.ArgDef{
 			&dcmd.ArgDef{Name: "User", Type: dcmd.UserID},
@@ -194,11 +194,11 @@ var cmds = []*commands.YAGCommand{
 		RunFunc: func(parsed *dcmd.Data) (interface{}, error) {
 			conf, err := GetConfig(parsed.Context(), parsed.GS.ID)
 			if err != nil {
-				return "An error occured while finding the server config", err
+				return "Pojawił się błąd podczas szukania konfiguarcji serwera", err
 			}
 
 			if !IsAdmin(parsed.GS, parsed.MS, conf) {
-				return "You're not an reputation admin. (no manage servers perms and no rep admin role)", nil
+				return "Nie masz permisji do zarządzania reputacją. (Nie masz permisji zarządzania serwerem i roli rep admin)", nil
 			}
 
 			targetID := parsed.Args[0].Int64()
@@ -212,7 +212,7 @@ var cmds = []*commands.YAGCommand{
 			}
 
 			if len(logEntries) < 1 {
-				return "No entries", nil
+				return "Nic nie znaleziono", nil
 			}
 
 			// grab the up to date info on as many users as we can
@@ -266,16 +266,16 @@ var cmds = []*commands.YAGCommand{
 					sender = discordgo.StrID(entry.SenderID)
 				}
 
-				f := "#%2d: %-15s: %s gave %s: %d points"
+				f := "#%2d: %-15s: %s dał %s: %d punktów"
 				if entry.SetFixedAmount {
-					f = "#%2d: %-15s: %s set %s points to: %d"
+					f = "#%2d: %-15s: %s ustawił ilość punktów %s na: %d"
 				}
 				out.WriteString(fmt.Sprintf(f, i+offset+1, entry.CreatedAt.UTC().Format("02 Jan 06 15:04"), sender, receiver, entry.Amount))
 				out.WriteRune('\n')
 			}
 
 			out.WriteString("```\n")
-			out.WriteString(fmt.Sprint("Page ", parsed.Args[1].Int()))
+			out.WriteString(fmt.Sprint("Strona ", parsed.Args[1].Int()))
 
 			return out.String(), nil
 		},
@@ -283,7 +283,7 @@ var cmds = []*commands.YAGCommand{
 	&commands.YAGCommand{
 		CmdCategory: commands.CategoryFun,
 		Name:        "Rep",
-		Description: "Shows yours or the specified users current rep and rank",
+		Description: "Pokazuje liczbę i ranking twoich punktów lub punktów innego użytkownika ",
 		Arguments: []*dcmd.ArgDef{
 			&dcmd.ArgDef{Name: "User", Type: dcmd.User},
 		},
@@ -295,7 +295,7 @@ var cmds = []*commands.YAGCommand{
 
 			conf, err := GetConfig(parsed.Context(), parsed.GS.ID)
 			if err != nil {
-				return "An error occured finding the server config", err
+				return "Pojawił się błąd podczas szukania konfiguarcji serwera", err
 			}
 
 			score, rank, err := GetUserStats(parsed.GS.ID, target.ID)
@@ -319,9 +319,9 @@ var cmds = []*commands.YAGCommand{
 	&commands.YAGCommand{
 		CmdCategory: commands.CategoryFun,
 		Name:        "TopRep",
-		Description: "Shows rep leaderboard on the server",
+		Description: "Pokazuje ranking punktów reputacji serwera",
 		Arguments: []*dcmd.ArgDef{
-			{Name: "Page", Type: dcmd.Int, Default: 0},
+			{Name: "Strona", Type: dcmd.Int, Default: 0},
 		},
 		RunFunc: paginatedmessages.PaginatedCommand(0, func(parsed *dcmd.Data, p *paginatedmessages.PaginatedMessage, page int) (*discordgo.MessageEmbed, error) {
 			offset := (page - 1) * 15
@@ -340,7 +340,7 @@ var cmds = []*commands.YAGCommand{
 			}
 
 			embed := &discordgo.MessageEmbed{
-				Title: "Reputation leaderboard",
+				Title: "Ranking reputacji",
 			}
 
 			leaderboardURL := web.BaseURL() + "/public/" + discordgo.StrID(parsed.GS.ID) + "/reputation/leaderboard"
