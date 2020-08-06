@@ -84,16 +84,17 @@ func HandlePostStreaming(w http.ResponseWriter, r *http.Request) interface{} {
 
 	err = featureflags.UpdatePluginFeatureFlags(guild.ID, &Plugin{})
 	if err != nil {
-		web.CtxLogger(ctx).WithError(err).Error("Nieudana aktualizacja flag funkcji")
+		web.CtxLogger(ctx).WithError(err).Error("Nie udało zaaktualizować się flag funkcjii")
 	}
 
 	err = pubsub.Publish("update_streaming", guild.ID, nil)
 	if err != nil {
-		web.CtxLogger(ctx).WithError(err).Error("Nie udało ci się wysłać aktualizację zdarzenia transmisji strumieniowej")
+		// nw jak to zrobic ok kc no homo
+		web.CtxLogger(ctx).WithError(err).Error("Nie udało się wysłać zdarzenia strumieniowego")
 	}
 
 	user := ctx.Value(common.ContextKeyUser).(*discordgo.User)
-	common.AddCPLogEntry(user, guild.ID, "t.")
+	common.AddCPLogEntry(user, guild.ID, "Zaaktualizowano zdarzenie strumieniowe")
 
 	return tmpl.AddAlerts(web.SucessAlert("Zapisano ustawienia"))
 }
