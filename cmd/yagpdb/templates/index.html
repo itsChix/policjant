@@ -17,10 +17,10 @@
 <meta name="msapplication-config" content="/static/icons/browserconfig.xml?v=6">
 <meta name="theme-color" content="#ffffff">
 
-  <meta property="og:title" content="YAGPDB" />
-  <meta property="og:description" content="Yet Another General Purpose Discord Bot" />
+  <meta property="og:title" content="Policjant" />
+  <meta property="og:description" content="Bot administracyjny serwera Robuxianie" />
   <!-- For Social Media -->
-  <meta property="description" content="Yet Another General Purpose Discord Bot" />
+  <meta property="description" content="Bot administracyjny serwera Robuxianie" />
   <!-- For search engines -->
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
@@ -45,27 +45,27 @@
     <div class="collapse navbar-collapse poppins" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a id="link_to_about" class="nav-link js-anchor-link" href="#about">About</a>
+          <a id="link_to_about" class="nav-link js-anchor-link" href="#about">O bocie</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link js-anchor-link" href="#features">Features</a>
+          <a class="nav-link js-anchor-link" href="#features">Funkcje</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/status">Status</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="https://discordapp.com/oauth2/authorize?client_id={{.ClientID}}&scope=bot&permissions=2146827775&response_type=code&redirect_uri={{urlquery (joinStr ""  "https://" .Host "/manage")}}">Add to server</a>
+          <a class="nav-link" href="https://discordapp.com/oauth2/authorize?client_id={{.ClientID}}&scope=bot&permissions=2146827775&response_type=code&redirect_uri={{urlquery (joinStr ""  "https://" .Host "/manage")}}">Dodaj na swój serwer</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/premium">Premium</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0 mr-2">
-        <a class="btn btn-outline-danger my-2 my-sm-0" href="/manage">Control Panel</a>
+        <a class="btn btn-outline-danger my-2 my-sm-0" href="/manage">Panel sterowania</a>
       </form>
       {{if .User}}
       <form class="form-inline my-2 my-lg-0">
-        <a class="btn btn-outline-danger my-2 my-sm-0" href="/logout">Logout</a>
+        <a class="btn btn-outline-danger my-2 my-sm-0" href="/logout">Wyloguj się</a>
       </form>
       {{end}}
     </div>
@@ -78,27 +78,27 @@
           <div class="row justify-content-md-center">
             <div class="col col-md-10">
               <h1 class="brand-heading bold intro_head">
-                <br/>YAGPDB</h1>
-              <p class="intro_headline">Yet Another General Purpose Discord Bot</p>
+                <br/>Policjant</h1>
+              <p class="intro_headline">Bot administracyjny serwera Robuxianie</p>
             </div>
           </div>
           {{if ne .DemoServerID "0"}}<div class="row justify-content-md-center">
             <div class="col col-md-10">
-              <p class="intro-text poppins"><a href="/manage/{{.DemoServerID}}/home">Click here for a live demo of the control panel</a></p>
+              <p class="intro-text poppins"><a href="/manage/{{.DemoServerID}}/home">Przetestuj panel sterowania</a></p>
             </div>
           </div>{{end}}
           <div class="row justify-content-md-center">
             <div class="col col-md-5">
               <div class="numberbutton">
                 <img src="/static/img/button.png" alt="" class="btn_img">
-                <p class="intro-text poppins bold numbercentered">Joined Servers
+                <p class="intro-text poppins bold numbercentered">Serwery które dodały bota:
                   <br> {{.JoinedServers}}</p>
               </div>
             </div>
             <div class="col col-md-5">
               <div class="numberbutton">
                 <img src="/static/img/button.png" alt="" class="btn_img">
-                <p class="intro-text poppins bold numbercentered">Commands ran today
+                <p class="intro-text poppins bold numbercentered">Komendy wykonane dzisiaj:
                   <br> {{.Commands}}</p>
               </div>
             </div>
@@ -116,15 +116,10 @@
       <img class="img-responsive about aboutlogo" src="/static/img/logo_y.png" alt="logo of yagpdb">
       <div class="row justify-content-md-center">
         <div class="col col-lg-8 abouttext" style="padding-bottom: 3%;">
-          <h2 class="about poppins semibold">About YAGPDB</h2>
-          <p class="about">YAGPDB is a multi-purpose Discord bot that I've worked on for quite some time now. What does it do? Well, it does
-            a bunch of stuff right now, the best way to figure out what it does is to try it out by adding it onto a testing
-            server and see what it provides for yourself.</p>
+          <h2 class="about poppins semibold">O Policjancie</h2>
+          <p class="about">Policjant jest polską wersją bota YAGPDB stworzoną na potrzeby serwera Robuxianie.</p>
           <p class="about">
-            <b>Who am I?</b> I go by the name Jonas747 online and (unsurprisingly) my real name is also Jonas, although not 747,
-            I'm not a plane. YAGPDB is a project that I have been developing in my spare time for roughly 3 years now, it
-            started out because MEE6 (which I was currently using for my server) was lacking a lot of stuff that I wanted,
-            so I decided to make my own bot, and here I am.</p>
+            <b>Kto go napisał?</b>Policjant został napisany przez administrację serwera Robuxianie, głównie Chix#0211, invirtual#5581 oraz qrx#1111. Bot w języku angielskim został napisany przez użytkownika jonas747. </p>
         </div>
       </div>
     </section>
@@ -136,21 +131,21 @@
       <div class="row justify-content-md-center">
         <div class="col col-lg-12">
           <h2 class="feature_title semibold">
-            <b>FEATURES</b>
+            <b>Funkcje</b>
           </h2>
         </div>
       </div>
       <div id="reddit_feed" class="feature_element_l">
         <div class="text-left redbox first">
-          <h3>Feeds</h3>
+          <h3>Najważniejsze funkcje</h3>
           <ul>
-            <li>Fast Reddit feeds (within one minute)</li>
-            <li>Fast YouTube feeds (within a few minutes)</li>
-            <li>Join / Leave messages in a specific channel (configurable)</li>
-            <li>Direct messages on join (configurable)</li>
+            <li>Zaawansowany, w pełni konfigurowalny automatyczny moderator</li>
+            <li>Duża ilość komend moderacyjnych oraz śledzenie usuniętych wiadomości i zapisywanie historii czatu</li>
+            <li>Funkcja automatycznego dodawania rang</li>
+            <li>Powiadomienia o przesłaniu nowego filmu na YouTube</li>
           </ul>
         </div>
-        <img src="/static/img/reddit feed1.png" class="img-fluid f_image_r second" alt="Example of Reddit Feed from r/discordapp">
+        <img src="/static/img/reddit feed1.png" class="img-fluid f_image_r second" alt="Example of Reddit Feed from r/disscordapp">
         <img src="/static/img/line1.png" class="img-fluid line_image line1" alt="line">
       </div>
       <div id="rolemenu" class="feature_element_r">
