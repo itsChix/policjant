@@ -2,7 +2,7 @@
 {{template "cp_head" .}}
 <header class="page-header">
     <h2>Automoderator {{if .AutomodConfig.Enabled}}<span class="bg-success">Enabled</span>{{else}}<span
-            class="bg-danger">Disabled</span>{{end}}</h2>
+            class="bg-danger">Wylaczony</span>{{end}}</h2>
 </header>
 
 {{template "cp_alerts" .}}
@@ -15,7 +15,7 @@
                 <ul class="nav nav-tabs">
                     <li class="nav-item active"><a class="nav-link show active" href="#general" aria-controls="general"
                             role="tab" data-toggle="tab">
-                            General
+                            Glowne
                         </a></li>
                     <li class="nav-item"><a class="nav-link" href="#spam" aria-controls="spam" role="tab"
                             data-toggle="tab">
@@ -24,27 +24,27 @@
                         </a></li>
                     <li class="nav-item"><a class="nav-link" href="#mass-mention" aria-controls="mass-mention"
                             role="tab" data-toggle="tab">
-                            Mass Mention <span
+                            Masowe oznaczanie <span
                                 class="indicator {{if .AutomodConfig.Mention.Enabled}}indicator-success{{else}}indicator-danger{{end}}"></span>
                         </a></li>
                     <li class="nav-item"><a class="nav-link" href="#invites" aria-controls="invites" role="tab"
                             data-toggle="tab">
-                            Server Invites <span
+                            Zaproszenia do serwerow <span
                                 class="indicator {{if .AutomodConfig.Invite.Enabled}}indicator-success{{else}}indicator-danger{{end}}"></span>
                         </a></li>
                     <li class="nav-item"><a class="nav-link" href="#links" aria-controls="links" role="tab"
                             data-toggle="tab">
-                            Links <span
+                            Linki <span
                                 class="indicator {{if .AutomodConfig.Links.Enabled}}indicator-success{{else}}indicator-danger{{end}}"></span>
                         </a></li>
                     <li class="nav-item"><a class="nav-link" href="#banned-words" aria-controls="banned-words"
                             role="tab" data-toggle="tab">
-                            Banned words <span
+                            Zablokowane slowa <span
                                 class="indicator {{if .AutomodConfig.Words.Enabled}}indicator-success{{else}}indicator-danger{{end}}"></span>
                         </a></li>
                     <li class="nav-item"><a class="nav-link" href="#banned-websites" aria-controls="banned-websites"
                             role="tab" data-toggle="tab">
-                            Banned websites <span
+                            Zablokowane strony <span
                                 class="indicator {{if .AutomodConfig.Sites.Enabled}}indicator-success{{else}}indicator-danger{{end}}"></span>
                         </a></li>
                 </ul>
@@ -69,7 +69,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <button type="submit" class="btn btn-success btn-lg btn-block">Save All Settings</button>
+            <button type="submit" class="btn btn-success btn-lg btn-block">Zapisz wszystkie ustawienia</button>
         </div>
     </div>
 </form>
@@ -81,14 +81,14 @@
 {{define "automod_legacy_general"}}
 <div class="row">
     <div class="col-lg-12">
-        {{checkbox "Enabled" "automod-enabled" "Enable basic automoderator" .AutomodConfig.Enabled}}
+        {{checkbox "Enabled" "automod-enabled" "Wlacz podstawowego automoderatora" .AutomodConfig.Enabled}}
     </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <h3>Basic automod</h3>
-        <p>This is the basic automod with limited funcitonality, if you want more flexibility then use automodv2,
-            altough it's quite a bit more complex</p>
+        <h3>Podstawowy automoderator</h3>
+        <p>To jest podstawowy automod z ograniczoną funkcjonalnością,, jezeli chcesz wiekszej funkcjonalnosci uzyj automodv2,
+            jednakze jest on troche bardziej skomplikowany</p>
         <p>The automoderator helps to perform mundane and repetitive duties on servers. It deals with the following
             cases:</p>
         <ul>
@@ -232,48 +232,48 @@
 {{checkbox (joinStr "" .Name ".Enabled") (joinStr "" .Name ".Enabled") "Enabled" .Rule.Enabled}}
 <hr />
 <div class="form-group">
-    <label for="ViolationsExpire">Violations expire after (minutes):</label>
+    <label for="ViolationsExpire">Naruszenia wygasaja po (minuty)</label>
     <input type="number" class="form-control" name="{{.Name}}.ViolationsExpire"
         value="{{.Rule.ViolationsExpire}}"></input>
-    <p class="help-block">When this many minutes have passed without any violations, the users violations are forgotten,
-        maximum is one month (44640 minutes).</p>
+    <p class="help-block">Gdy minie tyle minut bez żadnych naruszeń, ostrzezenia uzytkownika wygasaja,
+        maksymalnie miesiac (44640 minut).</p>
 </div>
 <hr />
 
 <div class="form-group row">
     <div class="col-lg-2">
-        <label for="MuteAfter">Mute after: <small>(Set up role in moderation)</small></label>
+        <label for="MuteAfter">Wyciszaj po:: <small>(Ustaw role do wyciszenia)</small></label>
         <input type="number" class="form-control" placeholder="" value="{{.Rule.MuteAfter}}" name="{{.Name}}.MuteAfter">
     </div>
 
     <div class="col-lg-3">
-        <label for="BanAfter">Mute duration <b>(minutes)</b>:</label>
+        <label for="BanAfter">Czas wyciszenia <b>(minuty)</b>:</label>
         <input type="number" class="form-control" placeholder="" value="{{.Rule.MuteDuration}}"
             name="{{.Name}}.MuteDuration">
     </div>
 
     <div class="col-lg-3 col-lg-offset-1">
-        <label for="KickAfter">Kick after:</label>
+        <label for="KickAfter">Wyrzucaj po:</label>
         <input type="number" class="form-control" placeholder="" value="{{.Rule.KickAfter}}" name="{{.Name}}.KickAfter">
     </div>
     <div class="col-lg-3">
-        <label for="BanAfter">Ban after <b>(Be careful with this)</b>:</label>
+        <label for="BanAfter">Banuj po <b>(Be careful with this)</b>:</label>
         <input type="number" class="form-control" placeholder="" value="{{.Rule.BanAfter}}" name="{{.Name}}.BanAfter">
     </div>
 </div>
-<p class="help-block">Punish based on number of violations >:O. (Punishment is disabled if set below 1.)</p>
-<p class="help-block">A warning and message deletion will always be issued if the rule is broken.</p>
+<p class="help-block">Kara bazujaca na ilosci ostrzezen >:O. (.)</p>
+<p class="help-block">Ostrzeżenie i usunięcie wiadomości będzie uzyte gdy zostanie zlamana zasada. </p>
 <hr />
 
 <div class="form-group">
-    <label for="IgnoreRole">Ignore role:</label>
+    <label for="IgnoreRole">Ignoruj role:</label>
     <select id="channel" class="form-control" name="{{.Name}}.IgnoreRole">
         {{roleOptions .Guild.Roles nil .Rule.IgnoreRole "None"}}
     </select>
 </div>
 
 <div class="form-group">
-    <label for="IgnoreChannels">Ignore channels:</label>
+    <label for="IgnoreChannels">Ignoruj kanały:</label>
     <select name="{{.Name}}.IgnoreChannels" class="multiselect" multiple="multiple" id="{{.Name}}"
         data-plugin-multiselect>
         {{textChannelOptionsMulti .Guild.Channels (.Rule.IgnoreChannelsParsed)}}
