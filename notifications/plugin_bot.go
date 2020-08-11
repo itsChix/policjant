@@ -206,7 +206,7 @@ func HandleChannelUpdate(evt *eventsystem.EventData) (retry bool, err error) {
 	go analytics.RecordActiveUnit(cu.GuildID, &Plugin{}, "posted_topic_change")
 
 	go func() {
-		_, err := common.BotSession.ChannelMessageSend(topicChannel, fmt.Sprintf("Topic in channel <#%d> changed to **%s**", cu.ID, cu.Topic))
+		_, err := common.BotSession.ChannelMessageSend(topicChannel, fmt.Sprintf("Temat kanału <#%d> zmieniony na **%s**", cu.ID, cu.Topic))
 		if err != nil {
 			logger.WithError(err).WithField("guild", cu.GuildID).Warn("Failed sending topic change message")
 		}
