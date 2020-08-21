@@ -159,7 +159,7 @@ func HumanizeDuration(precision DurationFormatPrecision, in time.Duration) strin
 
 	for i := len(out) - 1; i >= 0; i-- {
 		if i == 0 && i != len(out)-1 {
-			outStr += " and "
+			outStr += " i "
 		} else if i != len(out)-1 {
 			outStr += " "
 		}
@@ -167,7 +167,7 @@ func HumanizeDuration(precision DurationFormatPrecision, in time.Duration) strin
 	}
 
 	if outStr == "" {
-		outStr = "less than 1 " + precision.String()
+		outStr = "mniej niż 1 " + precision.String()
 	}
 
 	return outStr
@@ -178,10 +178,10 @@ func HumanizeTime(precision DurationFormatPrecision, in time.Time) string {
 	now := time.Now()
 	if now.After(in) {
 		duration := now.Sub(in)
-		return HumanizeDuration(precision, duration) + " ago"
+		return HumanizeDuration(precision, duration) + " temu"
 	} else {
 		duration := in.Sub(now)
-		return "in " + HumanizeDuration(precision, duration)
+		return "w " + HumanizeDuration(precision, duration)
 	}
 }
 
