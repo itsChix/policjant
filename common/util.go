@@ -96,17 +96,17 @@ const (
 func (d DurationFormatPrecision) String() string {
 	switch d {
 	case DurationPrecisionSeconds:
-		return "second"
+		return "sekund"
 	case DurationPrecisionMinutes:
-		return "minute"
+		return "minut"
 	case DurationPrecisionHours:
-		return "hour"
+		return "godzin"
 	case DurationPrecisionDays:
-		return "day"
+		return "dni"
 	case DurationPrecisionWeeks:
-		return "week"
+		return "tydzień"
 	case DurationPrecisionYears:
-		return "year"
+		return "rok"
 	}
 	return "Unknown"
 }
@@ -139,7 +139,7 @@ func pluralize(val int64) string {
 	if val == 1 {
 		return ""
 	}
-	return "s"
+	return "y"
 }
 
 func HumanizeDuration(precision DurationFormatPrecision, in time.Duration) string {
