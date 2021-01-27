@@ -1,0 +1,1 @@
+worker: docker-compose -f yagpdb/yagpdb_docker/docker-compose.yml up 
